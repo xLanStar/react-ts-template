@@ -9,13 +9,16 @@ import store from "./store.ts";
 import "dayjs/locale/zh-tw";
 
 import "antd/dist/reset.css";
+import { BrowserRouter } from "react-router-dom";
 import "./assets/scss/index.scss";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <ConfigProvider locale={zhTW} theme={Theme}>
     <AntdApp>
       <Provider store={store}>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </Provider>
     </AntdApp>
   </ConfigProvider>

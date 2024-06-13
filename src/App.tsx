@@ -1,30 +1,23 @@
-import { Flex, Spin, theme } from "antd";
-import { useEffect, useState } from "react";
-import { RouterProvider } from "react-router-dom";
-import router from "./data/router";
+import { theme } from "antd";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 
 const App: React.FunctionComponent = () => {
   const { token } = theme.useToken();
 
-  const [isReady, setIsReady] = useState(false);
-
-  useEffect(() => {
-    setIsReady(true);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
   return (
     <div
       style={{
-        backgroundColor: token.colorBgBase,
+        backgroundColor: token.colorBgLayout,
+        height: "100vh",
       }}
     >
-      {isReady ? (
-        <RouterProvider router={router} />
-      ) : (
-        <Flex align="center" justify="center" style={{ minHeight: "100vh" }}>
-          <Spin />
-        </Flex>
-      )}
+      <Routes>
+        <Route path="/" element={<Outlet />}>
+          <Route index element={<>Main</>} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </div>
   );
 };
