@@ -1,24 +1,16 @@
-import { theme } from "antd";
-import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+import React from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout/Layout";
+import Home from "./pages/Home/Home";
 
 const App: React.FunctionComponent = () => {
-  const { token } = theme.useToken();
-
   return (
-    <div
-      style={{
-        backgroundColor: token.colorBgLayout,
-        height: "100vh",
-      }}
-    >
-      <Routes>
-        <Route path="/" element={<Outlet />}>
-          <Route index element={<>Main</>} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+      </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 };
 

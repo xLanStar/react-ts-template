@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const APIHelper = axios.create({
+const apiHelper = axios.create({
   withCredentials: true,
 });
 
-export default APIHelper;
+export default apiHelper;
